@@ -31,7 +31,6 @@ if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    
     loginButton.disabled = true;
     loginButton.classList.add("opacity-70", "cursor-not-allowed");
 
@@ -42,7 +41,6 @@ if (loginForm) {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
-  
     loginError.classList.add("hidden");
 
     try {
@@ -52,9 +50,7 @@ if (loginForm) {
 
       console.log("Login successful!");
 
-    
       window.location.href = "admin.html";
-
     } catch (error) {
       console.error("Login error:", error);
 
@@ -62,17 +58,19 @@ if (loginForm) {
       loginError.textContent = "Invalid email or password.";
       loginError.classList.remove("hidden");
 
+      setTimeout(() => {
+        loginError.classList.add("hidden");
+      }, 2000);
+
       // Reset button
       loginButton.disabled = false;
       loginButton.classList.remove("opacity-70", "cursor-not-allowed");
 
       loginButtonText.textContent = "Login";
-      loginButtonIcon.className =
-        "fa-solid fa-paper-plane text-white text-sm";
+      loginButtonIcon.className = "fa-solid fa-paper-plane text-white text-sm";
     }
   });
 }
-
 
 // Remove error message while typing
 document.getElementById("email").addEventListener("input", () => {
