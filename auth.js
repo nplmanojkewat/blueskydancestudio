@@ -84,3 +84,22 @@ document.getElementById("email").addEventListener("input", () => {
 document.getElementById("password").addEventListener("input", () => {
     loginError.classList.add("hidden");
 });
+
+
+
+const loginButton = document.getElementById("loginButton");
+const loginButtonText = document.getElementById("loginButtonText");
+const loginButtonIcon = document.getElementById("loginButtonIcon");
+
+loginForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Show logging in state
+    loginButton.disabled = true;
+    loginButton.classList.add("opacity-70", "cursor-not-allowed");
+
+    loginButtonText.textContent = "Logging in...";
+    loginButtonIcon.className = "fa-solid fa-spinner fa-spin text-white text-sm";
+
+    // Your existing login/authentication code goes here
+});
