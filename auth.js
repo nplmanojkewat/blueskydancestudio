@@ -25,14 +25,13 @@ const loginButton = document.getElementById("loginButton");
 const loginButtonText = document.getElementById("loginButtonText");
 const loginButtonIcon = document.getElementById("loginButtonIcon");
 
-
 console.log("Login form:", loginForm);
 
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    // Show logging in state
+    
     loginButton.disabled = true;
     loginButton.classList.add("opacity-70", "cursor-not-allowed");
 
@@ -41,10 +40,9 @@ if (loginForm) {
       "fa-solid fa-spinner fa-spin text-white text-sm";
 
     const email = document.getElementById("email").value.trim();
-
     const password = document.getElementById("password").value;
 
-    // Hide previous error
+  
     loginError.classList.add("hidden");
 
     try {
@@ -54,19 +52,29 @@ if (loginForm) {
 
       console.log("Login successful!");
 
+    
       window.location.href = "admin.html";
+
     } catch (error) {
       console.error("Login error:", error);
 
-      // Show friendly error message
+      // Show error message
       loginError.textContent = "Invalid email or password.";
-
       loginError.classList.remove("hidden");
+
+      // Reset button
+      loginButton.disabled = false;
+      loginButton.classList.remove("opacity-70", "cursor-not-allowed");
+
+      loginButtonText.textContent = "Login";
+      loginButtonIcon.className =
+        "fa-solid fa-paper-plane text-white text-sm";
     }
   });
 }
 
-// To remove the Error message while typing
+
+// Remove error message while typing
 document.getElementById("email").addEventListener("input", () => {
   loginError.classList.add("hidden");
 });
