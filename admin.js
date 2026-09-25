@@ -99,6 +99,9 @@ onAuthStateChanged(auth, async (user) => {
   // No logged-in user
   if (!user) {
     window.location.href = "login.html";
+    setTimeout(() => {
+    window.location.reload();
+}, 500);
     return;
   }
 
