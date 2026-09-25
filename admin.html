@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BlueSky Dance Studio | Admin Portal</title>
+    <link rel="icon" type="image/png" href="asset/bsds-logo.png">
+
+    <link rel="stylesheet" href="./output.css">
+
+    <script src="https://kit.fontawesome.com/7e9295a93b.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body class="min-h-screen bg-white flex flex-col">
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="relative flex min-h-[72px] items-center justify-between bg-white px-4 py-4 sm:px-6 lg:px-12">
+
+        <!-- Logo -->
+        <div class="flex items-center justify-center gap-2 shrink-0 mr-5">
+
+            <!-- Mobile brand -->
+            <span class="text-sm font-bold text-black">
+                BSDS ADMIN PORTAL
+            </span>
+
+        </div>
+
+
+        <!-- Dashboard title -->
+        <h1 class="hidden lg:flex -translate-x-1/2
+                   whitespace-nowrap
+                   text-xl font-bold
+                   sm:text-2xl md:text-3xl text-blue-400">
+
+            Dashboard
+
+        </h1>
+
+
+        <!-- Logout -->
+        <button type="button" id="logoutBtn" class="flex px-8 py-2 shrink-0 items-center justify-center rounded-lg bg-emerald-50/80 border border-emerald-200
+                   transition hover:bg-green-600/20 hover:text-green-800" title="Logout">
+
+            <div class="flex justify-center items-center gap-2">
+                <i class="fa-solid fa-power-off text-sm"></i>
+            <span class="text-[14px] font-medium">Logout</span>
+            </div>
+
+        </button>
+
+    </nav>
+    <div class="h-[0.6px] bg-gray-300"></div>
+
+
+    <!-- Information Section -->
+    <section class="w-full pt-6 animate-slideInRight">
+
+        <div class="flex flex-col lg:flex-row gap-2 justify-center items-center">
+
+            <img class="w-32 h-32" src="asset/bsds-logo.png" alt="">
+
+            <div class="flex flex-col justify-center items-center gap-2">
+                <span class="text-xl lg:text-[2rem] font-extrabold text-black">BLUE SKY DANCE STUDIO</span>
+
+                <div class="flex gap-2 justify-center items-center">
+
+                    <span class="text-sm font-semibold text-slate-600">Learn</span>
+                    <div class="w-2 h-2 bg-blue-800 rounded-full"></div>
+                    <span class="text-sm font-semibold text-slate-600">Move</span>
+                    <div class="w-2 h-2 bg-blue-800 rounded-full"></div>
+                    <span class="text-sm font-semibold text-slate-600">Express</span>
+                    <div class="w-2 h-2 bg-blue-800 rounded-full"></div>
+                    <span class="text-sm font-semibold text-slate-600">Become Your Best</span>
+
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+    <div class="h-[1px] bg-zinc-200"></div>
+
+
+    <!-- Card Section -->
+    <div id="card-container" class="w-full flex justify-center items-center">
+        <div id="card-content" class="w-fit py-10">
+
+            <div id="card-group" class="w-full grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <div id="card-1"
+                    class="w-full flex flex-col justify-center items-center gap-4 border border-gray-300 px-8 md:px-12 py-4 rounded-lg hover:-translate-y-2 transition">
+
+                    <span class="font-sans font-semibold">Total Users</span>
+                    <span id="totalStudents" class="text-2xl font-sans font-bold">0</span>
+
+                </div>
+
+                <div id="card-2"
+                    class="w-full flex flex-col justify-center items-center gap-4 border bg-blue-500/10 text-blue-400 border-gray-300 px-8 md:px-12 py-4 rounded-lg hover:-translate-y-2 transition">
+
+                    <span class="font-sans font-semibold">Male</span>
+                    <span id="maleStudents" class="text-2xl font-sans font-bold">0</span>
+
+                </div>
+
+
+                <div id="card-3"
+                    class="w-full flex flex-col justify-center items-center gap-4 border bg-pink-500/10 text-pink-400 border-gray-300 px-8 md:px-12 py-4 rounded-lg hover:-translate-y-2 transition">
+
+                    <span class="font-sans font-semibold">Female</span>
+                    <span id="femaleStudents" class="text-2xl font-sans font-bold">0</span>
+
+                </div>
+
+
+                <div id="card-4"
+                    class="w-full flex flex-col justify-center items-center gap-4 border border-gray-300 px-8 md:px-12 py-4 rounded-lg hover:-translate-y-2 transition">
+
+                    <span class="font-sans font-semibold">Today</span>
+                    <span id="todayRegistered" class="text-2xl font-sans font-bold">0</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Table Section -->
+    <section class="w-full px-6 mt-4 mb-4">
+
+        <!-- Table Header -->
+        <div class="mb-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-ce">
+
+            <!-- Search -->
+            <div class="relative w-full sm:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"></i>
+
+                <input type="text" id="searchInput" placeholder="Search students..."
+                    class="w-full rounded-lg border border-zinc-700 bg-[#0D1426] py-2.5 pl-10 pr-4 text-sm text-white outline-none transition placeholder:text-zinc-500 focus:border-violet-500">
+            </div>
+
+        </div>
+
+
+        <!-- Table Container -->
+        <div class="overflow-hidden rounded-xl border border-zinc-700 bg-[#0D1426]">
+
+            <div class="overflow-x-auto">
+
+                <table class="w-full min-w-[800px] text-left">
+
+                    <!-- Table Head -->
+                    <thead class="border-b border-zinc-700 bg-white/5">
+                        <tr>
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Student Name
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Parents Name
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Phone Number
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Address
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Age
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Gender
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Registered Date
+                            </th>
+
+                            <th class="px-5 py-4 text-sm font-semibold text-zinc-300">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+
+
+                    <!-- Table Body -->
+                    <tbody id="registrationTableBody" class="divide-y divide-zinc-800">
+
+
+
+
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- Delete Confirmation Popup -->
+    <div id="deletePopup"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+
+        <div id="deleteBox" class="relative w-full max-w-sm rounded-2xl border border-red-400/30
+               bg-zinc-950/90 p-8 text-center shadow-2xl shadow-red-500/20
+               opacity-0 scale-90 transition-all duration-300">
+
+            <!-- Glow -->
+            <div class="absolute inset-0 -z-10 rounded-2xl bg-red-500/10 blur-2xl"></div>
+
+            <!-- Delete Icon -->
+            <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center
+                    rounded-full border border-red-400/40
+                    bg-gradient-to-br from-red-500/20 to-red-500/10">
+
+                <i class="fa-solid fa-trash text-2xl text-red-400"></i>
+
+            </div>
+
+            <h2 class="text-xl font-semibold text-white">
+                Delete Student?
+            </h2>
+
+            <p class="mt-2 text-sm text-zinc-400">
+                Are you sure you want to delete this student's registration?
+                This action cannot be undone.
+            </p>
+
+            <div class="mt-6 flex justify-center gap-3">
+
+                <button id="cancelDelete" class="rounded-lg border border-zinc-700
+                       bg-white/5 px-5 py-2 text-sm text-white
+                       transition hover:bg-white/10">
+                    Cancel
+                </button>
+
+                <button id="confirmDelete" class="rounded-lg bg-red-500/10
+                       border border-red-400/30
+                       px-5 py-2 text-sm text-red-400
+                       transition hover:bg-red-500/20">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Logout Confirmation Popup -->
+    <div id="logoutPopup"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 backdrop-blur-sm px-4">
+
+        <div id="logoutBox" class="relative w-full max-w-sm rounded-2xl border border-violet-400/30
+               bg-zinc-950/90 p-8 text-center shadow-2xl shadow-violet-500/20
+               opacity-0 scale-90 transition-all duration-300">
+
+            <!-- Glow -->
+            <div class="absolute inset-0 -z-10 rounded-2xl bg-violet-500/10 blur-2xl"></div>
+
+            <!-- Logout Icon -->
+            <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center
+                    rounded-full border border-violet-400/40
+                    bg-gradient-to-br from-violet-500/20 to-purple-500/10">
+
+                <i class="fa-solid fa-right-from-bracket text-2xl text-violet-300"></i>
+
+            </div>
+
+            <h2 class="text-xl font-semibold text-white">
+                Logout?
+            </h2>
+
+            <p class="mt-2 text-sm text-zinc-400">
+                Are you sure you want to logout from the admin dashboard?
+            </p>
+
+            <div class="mt-6 flex justify-center gap-3">
+
+                <!-- Cancel -->
+                <button id="cancelLogout" type="button" class="rounded-lg border border-zinc-700
+                       bg-white/5 px-5 py-2 text-sm text-white
+                       transition hover:bg-white/10">
+
+                    Cancel
+
+                </button>
+
+                <!-- Logout -->
+                <button id="confirmLogout" type="button" class="rounded-lg border border-violet-400/30
+                       bg-violet-500/10 px-5 py-2 text-sm
+                       text-violet-300 transition
+                       hover:bg-violet-500/20">
+
+                    Logout
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script type="module" src="./admin.js"></script>
+
+</body>
+
+</html>
