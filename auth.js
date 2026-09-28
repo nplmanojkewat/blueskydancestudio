@@ -26,22 +26,33 @@ const loginButtonText = document.getElementById("loginButtonText");
 const loginButtonIcon = document.getElementById("loginButtonIcon");
 
 console.log("Login form:", loginForm);
+console.log("Login button:", loginButton);
+console.log("Login button text:", loginButtonText);
+console.log("Login button icon:", loginButtonIcon);
 
 if (loginForm) {
   loginForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    loginButton.disabled = true;
-    loginButton.classList.add("opacity-70", "cursor-not-allowed");
+    // Hide previous error
+    loginError.classList.add("hidden");
 
-    loginButtonText.textContent = "Logging in...";
-    loginButtonIcon.className =
-      "fa-solid fa-spinner fa-spin text-white text-sm";
+    if (loginButton) {
+      loginButton.disabled = true;
+      loginButton.classList.add("opacity-70", "cursor-not-allowed");
+    }
+
+    if (loginButtonText) {
+      loginButtonText.textContent = "Logging in...";
+    }
+
+    if (loginButtonIcon) {
+      loginButtonIcon.className =
+        "fa-solid fa-spinner fa-spin text-white text-sm";
+    }
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
-
-    loginError.classList.add("hidden");
 
     try {
       console.log("Trying to login...");
@@ -54,25 +65,37 @@ if (loginForm) {
     } catch (error) {
       console.error("Login error:", error);
 
-      // Show error message
       loginError.textContent = "Invalid email or password.";
+
       loginError.classList.remove("hidden");
 
-      setTimeout(() => {
-        loginError.classList.add("hidden");
-      }, 2000);
+      if (loginButton) {
+        loginButton.disabled = false;
+        loginButton.classList.remove("opacity-70", "cursor-not-allowed");
+      }
 
+      if (loginButtonText) {
+        loginButtonText.textContent = "Login";
+      }
+
+      if (loginButtonIcon) {
+        loginButtonIcon.className =
+          "fa-solid fa-paper-plane text-white text-sm";
+      }
+    } finally {
       // Reset button
       loginButton.disabled = false;
       loginButton.classList.remove("opacity-70", "cursor-not-allowed");
 
       loginButtonText.textContent = "Login";
+
       loginButtonIcon.className = "fa-solid fa-paper-plane text-white text-sm";
     }
   });
 }
 
-// Remove error message while typing
+// Remove error when typing
+
 document.getElementById("email").addEventListener("input", () => {
   loginError.classList.add("hidden");
 });
